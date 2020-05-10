@@ -9,8 +9,10 @@
 include:
   - {{ sls_service_clean }}
 
-minio-config-clean-file-absent:
-  file.absent:
-    - name: {{ minio.config }}
-    - require:
-      - sls: {{ sls_service_clean }}
+{% if grains.os_family == 'FreeBSD' %}
+{%  for name in ['user', 'group', 'address', 'logfile', 'certs', 'disks'] %}
+minio-config-clean-{{ name }}:
+  sysrc.absent:
+    - name: minio_{{ name }}
+{%  endfor %}
+{% endif %}

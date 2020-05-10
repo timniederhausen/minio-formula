@@ -39,18 +39,9 @@
     )
 %}
 
-{%- set config = salt['grains.filter_by'](
+{%- set minio = salt['grains.filter_by'](
       {'defaults': defaults},
       default='defaults',
       merge=_config
     )
 %}
-
-{#- Change **minio** to match with your formula's name and then remove this line #}
-{%- set minio = config %}
-
-{#- Post-processing for specific non-YAML customisations #}
-{%- if grains.os == 'MacOS' %}
-{%-   set macos_group = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
-{%-   do minio.update({'rootgroup': macos_group}) %}
-{%- endif %}

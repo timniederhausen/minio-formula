@@ -10,31 +10,4 @@
 # you will need to provide at least an empty dict in this file, e.g.
 # osmap: {}
 ---
-# os_family: Debian
-Ubuntu:
-  pkg:
-    name: minio-ubuntu
-  config: /etc/minio.d/custom-ubuntu.conf
-Raspbian: {}
-
-# os_family: RedHat
-Fedora:
-  pkg:
-    name: minio-fedora
-  service:
-    name: service-fedora
-CentOS: {}
-Amazon: {}
-
-# os_family: Suse
-SUSE: {}
-openSUSE: {}
-
-# os_family: Gentoo
-Funtoo: {}
-
-# os_family: Arch
-Manjaro: {}
-
-# os_family: Solaris
-SmartOS: {}
+osmap: {}

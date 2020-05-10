@@ -5,48 +5,21 @@ minio-formula
 
 |img_travis| |img_sr|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/minio-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/timniederhausen/minio-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/minio-formula
+   :target: https://travis-ci.com/timniederhausen/minio-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-A SaltStack formula that is empty. It has dummy content to help with a quick
-start on a new formula and it serves as a style guide.
+A SaltStack formula that installs and manages a basic MinIO configuration.
+
+Currently only FreeBSD is supported!
 
 .. contents:: **Table of Contents**
    :depth: 1
-
-General notes
--------------
-
-See the full `SaltStack Formulas installation and usage instructions
-<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
-
-If you are interested in writing or contributing to formulas, please pay attention to the `Writing Formula Section
-<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#writing-formulas>`_.
-
-If you want to use this formula, please pay attention to the ``FORMULA`` file and/or ``git tag``,
-which contains the currently released version. This formula is versioned according to `Semantic Versioning <http://semver.org/>`_.
-
-See `Formula Versioning Section <https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#versioning>`_ for more details.
-
-If you need (non-default) configuration, please pay attention to the ``pillar.example`` file and/or `Special notes`_ section.
-
-Contributing to this repo
--------------------------
-
-**Commit message formatting is significant!!**
-
-Please see `How to contribute <https://github.com/saltstack-formulas/.github/blob/master/CONTRIBUTING.rst>`_ for more details.
-
-Special notes
--------------
-
-None
 
 Available states
 ----------------
@@ -106,71 +79,3 @@ dependency on ``minio.service.clean`` via include list.
 
 This state will remove the minio package and has a depency on
 ``minio.config.clean`` via include list.
-
-``minio.subcomponent``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Meta-state (This is a state that includes other states)*.
-
-This state installs a subcomponent configuration file before
-configuring and starting the minio service.
-
-``minio.subcomponent.config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will configure the minio subcomponent and has a
-dependency on ``minio.config`` via include list.
-
-``minio.subcomponent.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will remove the configuration of the minio subcomponent
-and reload the minio service by a dependency on
-``minio.service.running`` via include list and ``watch_in``
-requisite.
-
-Testing
--------
-
-Linux testing is done with ``kitchen-salt``.
-
-Requirements
-^^^^^^^^^^^^
-
-* Ruby
-* Docker
-
-.. code-block:: bash
-
-   $ gem install bundler
-   $ bundle install
-   $ bin/kitchen test [platform]
-
-Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
-e.g. ``debian-9-2019-2-py3``.
-
-``bin/kitchen converge``
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates the docker instance and runs the ``minio`` main state, ready for testing.
-
-``bin/kitchen verify``
-^^^^^^^^^^^^^^^^^^^^^^
-
-Runs the ``inspec`` tests on the actual instance.
-
-``bin/kitchen destroy``
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Removes the docker instance.
-
-``bin/kitchen test``
-^^^^^^^^^^^^^^^^^^^^
-
-Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
-
-``bin/kitchen login``
-^^^^^^^^^^^^^^^^^^^^^
-
-Gives you SSH access to the instance for manual testing.
-

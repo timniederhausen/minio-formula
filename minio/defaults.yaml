@@ -4,12 +4,5 @@
 minio:
   pkg:
     name: minio
-  rootgroup: root
-  config: '/etc/minio'
   service:
     name: minio
-  subcomponent:
-    config: '/etc/minio-subcomponent-formula.conf'
-  # Just here for testing
-  added_in_defaults: defaults_value
-  winner: defaults
