@@ -11,7 +11,7 @@ include:
   - {{ sls_package_install }}
 
 {% if grains.os_family == 'FreeBSD' %}
-{% set mapping = {'listen_address': 'address'} %}
+{% set mapping = {'address': 'listen_address'} %}
 {# Defaults from /usr/local/etc/rc.d/minio #}
 {% set defaults = {
   'user': 'minio',
@@ -25,7 +25,7 @@ include:
 minio-config-{{ name }}:
   sysrc.managed:
     - name: minio_{{ name }}
-    - value: {{ minio.get(mapping.get(name, name)) | yaml(False) }}
+    - value: {{ minio[mapping.get(name, name)] | yaml(False) }}
 {%   endif %}
 {%  endfor %}
 
