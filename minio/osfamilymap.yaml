@@ -12,23 +12,23 @@
 ---
 Debian:
   pkg:
-    name: TEMPLATE-debian
-  config: /etc/TEMPLATE.d/custom.conf
+    name: minio-debian
+  config: /etc/minio.d/custom.conf
 
 RedHat:
   pkg:
-    name: TEMPLATE-redhat
-  config: /etc/TEMPLATE.conf
+    name: minio-redhat
+  config: /etc/minio.conf
 
 Suse:
   pkg:
-    name: TEMPLATE-suse
+    name: minio-suse
 
 Gentoo: {}
 
 Arch:
   pkg:
-    name: TEMPLATE-arch
+    name: minio-arch
   service:
     name: service-arch
 
